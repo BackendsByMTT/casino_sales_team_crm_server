@@ -1,0 +1,18 @@
+{
+  "name": "casino_sales_team_crm_server",
+  "version": "1.0.0",
+  "description": "sales team management dashboard server",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon app.js"
+  },
+  "author": "Mohit",
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^3.0.3"
+  },
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
