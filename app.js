@@ -1,11 +1,40 @@
+const { createServer } = require("http");
+const { Server } = require("socket.io");
 const express = require("express");
+const routes =  require("./routes")
+const cookieParser = require('cookie-parser');
+const cors = require('cors');
+const connectDB = require("./src/config/db");
+const { socketControllers } = require("./src/routes/socketRoutes");
+
 const app = express();
-const port = process.env.PORT || 8080;
 
-app.get("/", (req, res) => {
-  res.send("Jello!");
+const corsOrigin ={
+  origin:'*', 
+  credentials:true,            
+  optionSuccessStatus:200
+}
+
+app.use(cors(corsOrigin))
+app.use(cookieParser());
+app.use(express.json())
+app.use(express.urlencoded({extended:true}))
+app.use("/",routes)
+
+const httpServer = createServer(app);
+const io = new Server(httpServer,{
+  cors:{
+    origin:'*'
+  }
 });
 
-app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`);
+connectDB()
+
+io.on("connection", (socket) => {
+  socketControllers(socket,io)
 });
+
+
+const PORT = process.env.PORT || 5000;
+
+httpServer.listen(PORT, ()=> console.log("server started at ",PORT))
