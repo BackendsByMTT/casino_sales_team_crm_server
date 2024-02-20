@@ -1,25 +1,5 @@
-const User = require("../../../models/tlModel");
+const User = require("../../../models/userModel");
 const { asyncHandler } = require("../../../utils/helpers/errorHelper");
-
-const employees = asyncHandler(async (req, res) => {
-  const users = await User.aggregate([
-    {
-      $group: {
-        _id: "$department",
-        users: {
-          $push: {
-            userName: "$userName",
-            email: "$email",
-            address: "$address",
-            phoneNumber: "$phoneNumber",
-          }
-        }
-      }
-    }
-  ]);
-  return res.status(200).json(users);
-}
-)
 
 
 const userRegistration = asyncHandler(async (req, res) => {
@@ -29,10 +9,9 @@ const userRegistration = asyncHandler(async (req, res) => {
     email,
     department,
     address,
-    phoneNumber,    
+    phoneNumber,
+    
   } = req.body
-
-
 
   if (await User.findOne({ email })) {
     console.log("kk")
@@ -55,4 +34,7 @@ const userRegistration = asyncHandler(async (req, res) => {
 
 })
 
-module.exports = { userRegistration, employees }
+
+
+
+module.exports = { userRegistration }

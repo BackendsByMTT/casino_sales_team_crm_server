@@ -1,11 +1,11 @@
 const { createServer } = require("http");
 const { Server } = require("socket.io");
 const express = require("express");
-const routes =  require("./routes")
 const cookieParser = require('cookie-parser');
 const cors = require('cors');
 const connectDB = require("./src/config/db");
 const { socketControllers } = require("./src/routes/socketRoutes");
+const router = require("./src/routes/routes");
 
 const app = express();
 
@@ -19,7 +19,7 @@ app.use(cors(corsOrigin))
 app.use(cookieParser());
 app.use(express.json())
 app.use(express.urlencoded({extended:true}))
-app.use("/",routes)
+app.use("/",router)
 
 const httpServer = createServer(app);
 const io = new Server(httpServer,{
