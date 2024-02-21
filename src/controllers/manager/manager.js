@@ -1,8 +1,7 @@
 const User = require("../../../models/userModel");
 const { asyncHandler } = require("../../../utils/helpers/errorHelper");
 
-
-const userRegistration = asyncHandler(async (req, res) => {
+const updateManager = asyncHandler(async (req, res) => {
 
   const {
     userName,
@@ -10,7 +9,7 @@ const userRegistration = asyncHandler(async (req, res) => {
     department,
     address,
     phoneNumber,
-    
+
   } = req.body
 
   if (await User.findOne({ email })) {
@@ -20,21 +19,20 @@ const userRegistration = asyncHandler(async (req, res) => {
   }
 
   console.log("1")
-  const user = await User.create({
+  const user = await User.findOneAndUpdate({
     userName,
     password: '123456789',
     email,
     department,
     address,
     phoneNumber,
-    
+    role   
+
   });
 
   employees(req, res)
 
 })
-
-
 
 
 module.exports = { userRegistration }

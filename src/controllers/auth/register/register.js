@@ -17,7 +17,7 @@ const employees = asyncHandler(async (req, res) => {
       }
     }
   ]);
-  return res.status(200).json(users);
+  return users
 }
 )
 
@@ -30,6 +30,7 @@ const userRegistration = asyncHandler(async (req, res) => {
     department,
     address,
     phoneNumber,    
+    role
   } = req.body
 
 
@@ -48,10 +49,10 @@ const userRegistration = asyncHandler(async (req, res) => {
     department,
     address,
     phoneNumber,
-    
+    role    
   });
 
-  employees(req, res)
+ return user;
 
 })
 
