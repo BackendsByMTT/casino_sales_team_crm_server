@@ -1,28 +1,23 @@
 const mongoose = require('mongoose');
 
-const userSchema = new mongoose.Schema({
-    userName: {
+const CoinSheetSchema = new mongoose.Schema({
+    entryBy: {
         type: String,
         required: true
     },
-    password: {
+    initialCoin: {
+        type: String,
+        required: true
+    },
+    spend: {
         type: String,
         required: true,
     },
-    email: {
-        type: String,
-        unique:true,
-        required: true,
-    },
-    phoneNumber: {
+    remaining: {
         type: String,
         required: true,
     },
-    address: {
-        type: String,
-        required: true,
-    },
-    department: {
+    incentive: {
         type: String,
         required: true,
     },
@@ -31,6 +26,6 @@ const userSchema = new mongoose.Schema({
         timestamps: true
     });
 
-const User = mongoose.model('User', userSchema);
+const CoinSheetModal = mongoose.model('CoinSheetSchema', CoinSheetSchema);
 
-module.exports = User;
+module.exports = CoinSheetModal;

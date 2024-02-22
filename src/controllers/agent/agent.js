@@ -1,9 +1,68 @@
-const { asyncHandler } = require("../../../utils/helpers/errorHelper");
-const PlayerContactToAgentModal = require("../../models/playerConatctToAgent");
-const AgentConatctToPlayerModal = require("../../models/agenContactToPlayer");
+const { asyncHandler } = require("../../utils/helpers/errorHelper");
+const FreeToPlayModal = require("../../models/freeToPlay");
+const FreshMessageModal = require("../../models/freshMessagesModel");
+const  FirstDepositeEntryModal= require("../../models/firstDepositeEntry");
 
 
-const addPlayerEntry = asyncHandler(async (req, res) => {
+
+const freshMessages = asyncHandler(async (req, res) => {
+
+    const {
+        entryBy,
+        agentName,
+        time,
+        date,
+        systemNumber,
+        accountName,
+        recieverId,
+        remark
+    } = req.body
+
+    const user = await FreshMessageModal.create({
+        entryBy,
+        agentName,
+        time,
+        date,
+        systemNumber,
+        accountName,
+        recieverId,
+        remark
+    });
+
+    return user;
+
+})
+
+const freeToPlay = asyncHandler(async (req, res) => {
+
+    const {
+        entryBy,
+        agentName,
+        time,
+        date,
+        systemNumber,
+        accountName,
+        recieverId,
+        remark
+    } = req.body
+
+    const user = await FreeToPlayModal.create({
+        entryBy,
+        agentName,
+        time,
+        date,
+        systemNumber,
+        accountName,
+        recieverId,
+        remark
+    });
+
+    return user;
+
+})
+
+
+const firstDepositeEntry = asyncHandler(async (req, res) => {
 
     const {
         timeStamp,
@@ -15,7 +74,7 @@ const addPlayerEntry = asyncHandler(async (req, res) => {
         remark
     } = req.body
 
-    const user = await AgentConatctToPlayerModal.create({
+    const user = await FirstDepositeEntryModal.create({
         timeStamp,
         date,
         agentName,
@@ -29,38 +88,5 @@ const addPlayerEntry = asyncHandler(async (req, res) => {
 
 })
 
-const playerContactToAgent = asyncHandler(async (req, res) => {
 
-    const {
-        timeStamp,
-        date,
-        agentName,
-        systemNumber,
-        agentFbAccount,
-        recieverId,
-        remark
-    } = req.body
-
-    const user = await PlayerContactToAgentModal.create({
-        timeStamp,
-        date,
-        agentName,
-        systemNumber,
-        agentFbAccount,
-        recieverId,
-        remark
-    });
-
-    return user;
-
-})
-
-
-
-module.exports = {addPlayerEntry,playerContactToAgent}
-
-
-
-
-
-module.exports = { userRegistration }
+module.exports = { freshMessages, freeToPlay, firstDepositeEntry }

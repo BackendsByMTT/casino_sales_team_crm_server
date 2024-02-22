@@ -4,8 +4,8 @@ const express = require("express");
 const cookieParser = require('cookie-parser');
 const cors = require('cors');
 const connectDB = require("./src/config/db");
-const { socketControllers } = require("./src/routes/socketRoutes");
 const router = require("./src/routes/routes");
+const { socketControllers } = require("./src/socket/socketRoutes");
 
 const app = express();
 

@@ -1,36 +1,36 @@
 const mongoose = require('mongoose');
 
-const BalanceSheetSchema = new mongoose.Schema({
+const freeToPlaySchema = new mongoose.Schema({
     entryBy: {
         type: String,
         required: true
     },
-    employeeName: {
+    agentName: {
         type: String,
         required: true
     },
-    designation: {
+    time: {
         type: String,
         required: true,
     },
-    employeeEmail: {
+    date: {
         type: String,
         unique: true,
         required: true,
     },
-    salary: {
+    systemNumber: {
         type: String,
         required: true,
     },
-    incentive: {
+    accountName: {
         type: String,
         required: true,
     },
-    totalSalary: {
+    recieverId: {
         type: String,
         required: true,
     },
-    review: {
+    remark: {
         type: String,
         required: true,
     },
@@ -39,7 +39,6 @@ const BalanceSheetSchema = new mongoose.Schema({
         timestamps: true
     });
 
-const BalanceSheetModal = mongoose.model('BalanceSheetSchema', BalanceSheetSchema);
+const FreeToPlayModal = mongoose.model('freeToPlaySchema', freeToPlaySchema);
 
-module.exports = BalanceSheetModal;
-;
+module.exports = FreeToPlayModal;

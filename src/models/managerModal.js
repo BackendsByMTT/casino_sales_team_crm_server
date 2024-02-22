@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const userSchema = new mongoose.Schema({
+const managerSchema = new mongoose.Schema({
     shift: {
         type: String,
         required: true,
@@ -12,6 +12,6 @@ const userSchema = new mongoose.Schema({
         timestamps: true
     });
 
-const User = mongoose.model('User', userSchema);
+const ManagerModal = mongoose.model('managerSchema', managerSchema);
 
-module.exports = User;
+module.exports = ManagerModal;

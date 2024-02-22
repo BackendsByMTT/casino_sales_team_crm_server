@@ -14,6 +14,10 @@ const userSchema = new mongoose.Schema({
         unique: true,
         required: true,
     },
+    isActive: {
+        type: Boolean,
+        default: false,
+    },
     phoneNumber: {
         type: String,
         required: true,
@@ -34,7 +38,7 @@ const userSchema = new mongoose.Schema({
     onModel: {
         type: String,
         required: true,
-        enum: ['RoleModel1', 'RoleModel2', 'RoleModel3']  // List of possible models
+        enum: ["tl", "agent", "manager"]  // List of possible models
     }
 },
     {

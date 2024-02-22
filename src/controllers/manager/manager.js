@@ -1,7 +1,63 @@
-const User = require("../../../models/userModel");
-const { asyncHandler } = require("../../../utils/helpers/errorHelper");
+const { asyncHandler } = require("../../utils/helpers/errorHelper");
+const AccountRecordModal = require("../../models/accountRecords");
+const BalanceSheetModal = require("../../models/balanceSheet");
+const CoinSheetModal = require("../../models/coinSheet");
 
-const updateManager = asyncHandler(async (req, res) => {
+const balanceSheet = asyncHandler(async (req, res) => {
+
+  const {
+    entryBy,
+    employeeName,
+    designation,
+    employeeEmail,
+    salary,
+    incentive,
+    totalSalary,
+    review
+
+  } = req.body
+
+  console.log("1")
+  const user = await BalanceSheetModal.findOneAndUpdate({
+    entryBy,
+    employeeName: '123456789',
+    designation,
+    employeeEmail,
+    salary,
+    incentive,
+    totalSalary,
+    review
+
+  });
+
+
+})
+
+const coinSheet = asyncHandler(async (req, res) => {
+
+  const {
+    entryBy,
+    initialCoin,
+    spend,
+    remaining,
+    incentive,
+
+  } = req.body
+
+
+  console.log("1")
+  const user = await CoinSheetModal.findOneAndUpdate({
+    entryBy,
+    initialCoin: '123456789',
+    spend,
+    remaining,
+    incentive,
+  });
+
+
+})
+
+const accountRecord = asyncHandler(async (req, res) => {
 
   const {
     userName,
@@ -12,27 +68,19 @@ const updateManager = asyncHandler(async (req, res) => {
 
   } = req.body
 
-  if (await User.findOne({ email })) {
-    console.log("kk")
-    return res.status(201).json({ error: "This email already registered" });
-
-  }
-
   console.log("1")
-  const user = await User.findOneAndUpdate({
+  const user = await AccountRecordModal.findOneAndUpdate({
+    entryBy,
     userName,
-    password: '123456789',
-    email,
-    department,
-    address,
-    phoneNumber,
-    role   
+    password,
+    status,
+    fbAccountLink,
+    agentNameOfFbAccount,
 
   });
 
-  employees(req, res)
 
 })
 
 
-module.exports = { userRegistration }
+module.exports = { balanceSheet, coinSheet, accountRecord }

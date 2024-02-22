@@ -1,4 +1,5 @@
-const { chat_join } = require("../controllers/socketControllers/socket")
+const { chat_join } = require("./socket")
+
 
 const socketControllers=async(socket,io)=>{
     chat_join(socket,io)

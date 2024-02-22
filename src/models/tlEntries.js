@@ -1,28 +1,32 @@
 const mongoose = require('mongoose');
 
-const AgentConatctToPlayerEntrySchema = new mongoose.Schema({
-    timeStamp: {
+const TlEntriesSchema = new mongoose.Schema({
+    entryBy: {
+        type: String,
+        required: true
+    },
+    time: {
+        type: String,
+        required: true
+    },
+    date: {
         type: String,
         required: true,
     },
-    date: {
+    customerName: {
         type: String,
         unique: true,
         required: true,
     },
-    agentName: {
+    gameName: {
         type: String,
         required: true,
     },
-    systemNumber: {
+    amount: {
         type: String,
         required: true,
     },
-    agentFbAccount: {
-        type: String,
-        required: true,
-    },
-    recieverId: {
+    accoutnName: {
         type: String,
         required: true,
     },
@@ -35,6 +39,6 @@ const AgentConatctToPlayerEntrySchema = new mongoose.Schema({
         timestamps: true
     });
 
-const AgentConatctToPlayerModal = mongoose.model('PlayerContactEntrySchema', AgentConatctToPlayerEntrySchema);
+const TlEntriesModal = mongoose.model('TlEntriesSchema', TlEntriesSchema);
 
-module.exports = AgentConatctToPlayerModal;
+module.exports = TlEntriesModal;

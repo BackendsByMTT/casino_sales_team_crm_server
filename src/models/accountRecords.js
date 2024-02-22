@@ -1,28 +1,28 @@
 const mongoose = require('mongoose');
 
-const userSchema = new mongoose.Schema({
+const AccountRecordSchema = new mongoose.Schema({
+    entryBy: {
+        type: String,
+        required: true,
+    },
     userName: {
         type: String,
-        required: true
+        required: true,
     },
     password: {
         type: String,
+        unique: true,
         required: true,
     },
-    email: {
-        type: String,
-        unique:true,
-        required: true,
-    },
-    phoneNumber: {
+    status: {
         type: String,
         required: true,
     },
-    address: {
+    fbAccountLink: {
         type: String,
         required: true,
     },
-    department: {
+    agentNameOfFbAccount: {
         type: String,
         required: true,
     },
@@ -31,6 +31,6 @@ const userSchema = new mongoose.Schema({
         timestamps: true
     });
 
-const User = mongoose.model('User', userSchema);
+const AccountRecordModal = mongoose.model('AccountRecordSchema', AccountRecordSchema);
 
-module.exports = User;
+module.exports = AccountRecordModal;

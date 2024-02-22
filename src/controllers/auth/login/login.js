@@ -1,5 +1,5 @@
 const { JWT_SECRET } = require("../../../config/envVars");
-const User = require("../../../models/tlModel");
+const User = require("../../../models/tlEntries");
 let jwt = require('jsonwebtoken');
 const { asyncHandler } = require("../../../utils/helpers/errorHelper");
 

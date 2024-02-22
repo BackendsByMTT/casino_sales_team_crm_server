@@ -1,4 +1,4 @@
-const User = require("../../../models/tlModel");
+const User = require("../../../models/tlEntries");
 const { asyncHandler } = require("../../../utils/helpers/errorHelper");
 
 const employees = asyncHandler(async (req, res) => {
@@ -29,7 +29,7 @@ const userRegistration = asyncHandler(async (req, res) => {
     email,
     department,
     address,
-    phoneNumber,    
+    phoneNumber,
     role
   } = req.body
 
@@ -49,10 +49,10 @@ const userRegistration = asyncHandler(async (req, res) => {
     department,
     address,
     phoneNumber,
-    role    
+    role
   });
 
- return user;
+  return user;
 
 })
 
