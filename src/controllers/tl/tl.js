@@ -15,25 +15,24 @@ const tlEntries = asyncHandler(async (req, res) => {
     remark
   } = req.body
 
-  console.log("1")
+  console.log("1", req.body)
 
-  const user = await TlEntriesModal.create({
-    entryBy,
-    time,
-    date,
-    customerName,
-    gameName,
-    amount,
-    accoutnName,
-    remark
+  // const newEntry = await TlEntriesModal.create({
+  //   entryBy,
+  //   time,
+  //   date,
+  //   customerName,
+  //   gameName,
+  //   amount,
+  //   accoutnName,
+  //   remark
 
-  });
+  // });
 
-  employees(req, res)
+  // const tlEntries = await TlEntriesModal.find({})
+
+  return res.status(200).json({ mess: "sucess" })
 
 })
-
-
-
 
 module.exports = { tlEntries }

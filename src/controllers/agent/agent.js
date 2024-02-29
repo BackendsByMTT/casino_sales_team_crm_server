@@ -1,9 +1,7 @@
 const { asyncHandler } = require("../../utils/helpers/errorHelper");
 const FreeToPlayModal = require("../../models/freeToPlay");
 const FreshMessageModal = require("../../models/freshMessagesModel");
-const  FirstDepositeEntryModal= require("../../models/firstDepositeEntry");
-
-
+const FirstDepositeEntryModal = require("../../models/firstDepositeEntry");
 
 const freshMessages = asyncHandler(async (req, res) => {
 
@@ -18,7 +16,7 @@ const freshMessages = asyncHandler(async (req, res) => {
         remark
     } = req.body
 
-    const user = await FreshMessageModal.create({
+    const newMessages = await FreshMessageModal.create({
         entryBy,
         agentName,
         time,
@@ -29,7 +27,9 @@ const freshMessages = asyncHandler(async (req, res) => {
         remark
     });
 
-    return user;
+    const freshMessages = await FreshMessageModal.find({})
+
+    return res.status(200).json(freshMessages)
 
 })
 
@@ -46,7 +46,7 @@ const freeToPlay = asyncHandler(async (req, res) => {
         remark
     } = req.body
 
-    const user = await FreeToPlayModal.create({
+    const freePlayNewAccount = await FreeToPlayModal.create({
         entryBy,
         agentName,
         time,
@@ -57,7 +57,9 @@ const freeToPlay = asyncHandler(async (req, res) => {
         remark
     });
 
-    return user;
+    const freeToPlayAccounts = await FreeToPlayModal.find({})
+
+    return res.status(200).json(freeToPlayAccounts)
 
 })
 
@@ -74,7 +76,7 @@ const firstDepositeEntry = asyncHandler(async (req, res) => {
         remark
     } = req.body
 
-    const user = await FirstDepositeEntryModal.create({
+    const firstDepositeNewEntry = await FirstDepositeEntryModal.create({
         timeStamp,
         date,
         agentName,
@@ -84,7 +86,9 @@ const firstDepositeEntry = asyncHandler(async (req, res) => {
         remark
     });
 
-    return user;
+    const firstDepositeEntries = await FirstDepositeEntryModal.find({})
+
+    return res.status(200).json(firstDepositeEntries)
 
 })
 

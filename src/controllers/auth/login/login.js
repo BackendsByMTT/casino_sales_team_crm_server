@@ -1,9 +1,11 @@
 const { JWT_SECRET } = require("../../../config/envVars");
-const User = require("../../../models/tlEntries");
 let jwt = require('jsonwebtoken');
 const { asyncHandler } = require("../../../utils/helpers/errorHelper");
+const User = require("../../../models/userModel");
 
 const loginUser = asyncHandler(async (req, res) => {
+
+  console.log("looogin", req.body)
 
   const { email, password } = req.body
   const user = await User.findOne({ email });
@@ -15,7 +17,7 @@ const loginUser = asyncHandler(async (req, res) => {
     return res.status(201).json({ error: "Wrong credentials" });
   console.log("login", user)
 
-  const token = jwt.sign({ email }, JWT_SECRET);
+  const token = jwt.sign({ email, designation: user.designation }, JWT_SECRET);
 
   return res.status(200).json({ email, token });
 

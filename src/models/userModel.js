@@ -30,9 +30,8 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-    role: {
+    userNextDetails: {
         type: mongoose.Schema.Types.ObjectId,
-        required: true,
         refPath: 'onModel'
     },
     onModel: {

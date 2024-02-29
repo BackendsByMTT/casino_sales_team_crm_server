@@ -18,7 +18,8 @@ const balanceSheet = asyncHandler(async (req, res) => {
   } = req.body
 
   console.log("1")
-  const user = await BalanceSheetModal.findOneAndUpdate({
+
+  const newBalance = await BalanceSheetModal.findOneAndUpdate({
     entryBy,
     employeeName: '123456789',
     designation,
@@ -29,6 +30,10 @@ const balanceSheet = asyncHandler(async (req, res) => {
     review
 
   });
+
+  const balanceSheet = await BalanceSheetModal.find({})
+
+  return res.status(200).json(balanceSheet)
 
 
 })
@@ -46,7 +51,7 @@ const coinSheet = asyncHandler(async (req, res) => {
 
 
   console.log("1")
-  const user = await CoinSheetModal.findOneAndUpdate({
+  const newCoinEntry = await CoinSheetModal.findOneAndUpdate({
     entryBy,
     initialCoin: '123456789',
     spend,
@@ -54,22 +59,27 @@ const coinSheet = asyncHandler(async (req, res) => {
     incentive,
   });
 
+  const coinSheet = await CoinSheetModal.find({})
+
+  return res.status(200).json(coinSheet)
+
 
 })
 
 const accountRecord = asyncHandler(async (req, res) => {
 
   const {
+    entryBy,
     userName,
-    email,
-    department,
-    address,
-    phoneNumber,
+    password,
+    status,
+    fbAccountLink,
+    agentNameOfFbAccount,
 
   } = req.body
 
   console.log("1")
-  const user = await AccountRecordModal.findOneAndUpdate({
+  const newAccountRecord = await AccountRecordModal.findOneAndUpdate({
     entryBy,
     userName,
     password,
@@ -78,6 +88,10 @@ const accountRecord = asyncHandler(async (req, res) => {
     agentNameOfFbAccount,
 
   });
+
+  const accountRecords = await AccountRecordModal.find({})
+
+  return res.status(200).json(accountRecords)
 
 
 })

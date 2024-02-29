@@ -1,4 +1,4 @@
-const User = require("../../../models/tlEntries");
+const User = require("../../../models/userModel");
 const { asyncHandler } = require("../../../utils/helpers/errorHelper");
 
 const employees = asyncHandler(async (req, res) => {
@@ -21,16 +21,17 @@ const employees = asyncHandler(async (req, res) => {
 }
 )
 
-
 const userRegistration = asyncHandler(async (req, res) => {
+  console.log("regggggg")
 
   const {
     userName,
+    password,
     email,
-    department,
-    address,
+    isActive,
     phoneNumber,
-    role
+    address,
+    designation,
   } = req.body
 
 
@@ -44,15 +45,16 @@ const userRegistration = asyncHandler(async (req, res) => {
   console.log("1")
   const user = await User.create({
     userName,
-    password: '123456789',
+    password,
     email,
-    department,
-    address,
+    isActive,
     phoneNumber,
-    role
+    address,
+    designation,
+    onModel: designation
   });
 
-  return user;
+  return res.status(200).json(user);
 
 })
 
