@@ -3,6 +3,7 @@ var jwt = require('jsonwebtoken');
 
 const verifyToken = (req, res, next) => {
 
+    console.log("middle", req.body)
     const cookie = req.body.userToken;
     if (cookie) {
         jwt.verify(cookie, process.env.JWT_SECRET, (err, decoded) => {
@@ -11,7 +12,7 @@ const verifyToken = (req, res, next) => {
                 return res.status(201).json({ error: "You are not authenticated" })
             } else {
 
-                req.body = { ...req.body, designation: decoded.designation, role: decoded.role, email:decoded.email }
+                req.body = { ...req.body, entryBy:decoded.email }
                 next()
 
             }

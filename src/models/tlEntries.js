@@ -26,7 +26,7 @@ const TlEntriesSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-    accoutnName: {
+    accountName: {
         type: String,
         required: true,
     },
