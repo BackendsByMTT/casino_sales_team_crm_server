@@ -3,7 +3,7 @@ const { loginUser } = require("../controllers/auth/login/login");
 const { userRegistration } = require("../controllers/auth/register/register");
 const { accesControl, updateUser } = require("../controllers/bigBoss/bigBoss");
 const { balanceSheet, coinSheet, accountRecord } = require("../controllers/manager/manager");
-const { tlEntries } = require("../controllers/tl/tl");
+const { tlEntries, getTlEntries } = require("../controllers/tl/tl");
 const { verifyToken } = require("../middleware/tokenVerification");
 
 const router = require("express").Router();
@@ -21,6 +21,8 @@ router.post("/api/manager/coinSheet", coinSheet)
 router.post("/api/manager/accountRecords", accountRecord)
 
 router.post("/api/tl/tlEntries",verifyToken, tlEntries)
+router.post("/api/tl/gettlEntries",verifyToken, getTlEntries)
+
 
 router.post("/api/agent/freshMessages", freshMessages)
 router.post("/api/agent/freeToPlay", freeToPlay)

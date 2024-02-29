@@ -3,10 +3,22 @@ const TlEntriesModal = require("../../models/tlEntries");
 
 
 
+
+const getTlEntries = asyncHandler(async (req, res) => {
+
+  console.log("getTlEntr",req.body)
+
+  const tlEntries = await TlEntriesModal.find({})
+
+  return res.status(200).json(tlEntries)
+
+})
+
 const tlEntries = asyncHandler(async (req, res) => {
 
   const {
     entryBy,
+    timeStamp,
     date,
     customerName,
     gameName,
@@ -19,7 +31,7 @@ const tlEntries = asyncHandler(async (req, res) => {
 
   const newEntry = await TlEntriesModal.create({
     entryBy,
-    time:"jh",
+    time:timeStamp,
     date,
     customerName,
     gameName,
@@ -29,10 +41,9 @@ const tlEntries = asyncHandler(async (req, res) => {
 
   });
 
-  const tlEntries = await TlEntriesModal.find({})
+  getTlEntries(req,res)
 
-  return res.status(200).json(tlEntries)
 
 })
 
-module.exports = { tlEntries }
+module.exports = { tlEntries,getTlEntries}
