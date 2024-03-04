@@ -3,6 +3,34 @@ const AccountRecordModal = require("../../models/accountRecords");
 const BalanceSheetModal = require("../../models/balanceSheet");
 const CoinSheetModal = require("../../models/coinSheet");
 
+
+const getBalanceSheet = asyncHandler(async (req, res) => {
+
+  const balanceSheet = await BalanceSheetModal.find({})
+  return res.status(200).json(balanceSheet)
+
+})
+
+const getCoinSheet = asyncHandler(async (req, res) => {
+
+  const coinSheet = await CoinSheetModal.find({})
+
+  return res.status(200).json(coinSheet)
+
+
+})
+
+const getAccountRecord = asyncHandler(async (req, res) => {
+
+  const accountRecords = await AccountRecordModal.find({})
+  console.log("gteAccRec",accountRecords)
+
+  return res.status(200).json(accountRecords)
+
+
+})
+
+
 const balanceSheet = asyncHandler(async (req, res) => {
 
   const {
@@ -19,9 +47,9 @@ const balanceSheet = asyncHandler(async (req, res) => {
 
   console.log("1")
 
-  const newBalance = await BalanceSheetModal.findOneAndUpdate({
+  const newBalance = await BalanceSheetModal.create({
     entryBy,
-    employeeName: '123456789',
+    employeeName,
     designation,
     employeeEmail,
     salary,
@@ -31,10 +59,7 @@ const balanceSheet = asyncHandler(async (req, res) => {
 
   });
 
-  const balanceSheet = await BalanceSheetModal.find({})
-
-  return res.status(200).json(balanceSheet)
-
+  getBalanceSheet(req, res)
 
 })
 
@@ -51,17 +76,15 @@ const coinSheet = asyncHandler(async (req, res) => {
 
 
   console.log("1")
-  const newCoinEntry = await CoinSheetModal.findOneAndUpdate({
+  const newCoinEntry = await CoinSheetModal.create({
     entryBy,
-    initialCoin: '123456789',
+    initialCoin,
     spend,
     remaining,
     incentive,
   });
 
-  const coinSheet = await CoinSheetModal.find({})
-
-  return res.status(200).json(coinSheet)
+  getCoinSheet(req, res)
 
 
 })
@@ -78,8 +101,8 @@ const accountRecord = asyncHandler(async (req, res) => {
 
   } = req.body
 
-  console.log("1")
-  const newAccountRecord = await AccountRecordModal.findOneAndUpdate({
+  console.log("entryAccount TRecords",req.body)
+  const newAccountRecord = await AccountRecordModal.create({
     entryBy,
     userName,
     password,
@@ -89,12 +112,9 @@ const accountRecord = asyncHandler(async (req, res) => {
 
   });
 
-  const accountRecords = await AccountRecordModal.find({})
-
-  return res.status(200).json(accountRecords)
-
+  getAccountRecord(req, res)
 
 })
 
 
-module.exports = { balanceSheet, coinSheet, accountRecord }
+module.exports = { balanceSheet,getAccountRecord,getBalanceSheet,getCoinSheet, coinSheet, accountRecord }

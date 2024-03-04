@@ -2,8 +2,6 @@ const { asyncHandler } = require("../../utils/helpers/errorHelper");
 const TlEntriesModal = require("../../models/tlEntries");
 
 
-
-
 const getTlEntries = asyncHandler(async (req, res) => {
 
   console.log("getTlEntr",req.body)
@@ -16,6 +14,8 @@ const getTlEntries = asyncHandler(async (req, res) => {
 
 const tlEntries = asyncHandler(async (req, res) => {
 
+  console.log("tlEntries", req.body)
+
   const {
     entryBy,
     timeStamp,
@@ -27,7 +27,7 @@ const tlEntries = asyncHandler(async (req, res) => {
     remark
   } = req.body
 
-  console.log("1", req.body)
+
 
   const newEntry = await TlEntriesModal.create({
     entryBy,
@@ -40,10 +40,7 @@ const tlEntries = asyncHandler(async (req, res) => {
     remark
 
   });
-
   getTlEntries(req,res)
-
-
 })
 
 module.exports = { tlEntries,getTlEntries}

@@ -3,6 +3,17 @@ const FreeToPlayModal = require("../../models/freeToPlay");
 const FreshMessageModal = require("../../models/freshMessagesModel");
 const FirstDepositeEntryModal = require("../../models/firstDepositeEntry");
 
+
+
+const getFreshMessages = asyncHandler(async (req, res) => {
+
+    const freshMessages = await FreshMessageModal.find({})
+
+    return res.status(200).json(freshMessages)
+
+})
+
+
 const freshMessages = asyncHandler(async (req, res) => {
 
     const {
@@ -27,9 +38,16 @@ const freshMessages = asyncHandler(async (req, res) => {
         remark
     });
 
-    const freshMessages = await FreshMessageModal.find({})
+    getFreshMessages(req, res)
 
-    return res.status(200).json(freshMessages)
+})
+
+const getFreeToPlay = asyncHandler(async (req, res) => {
+
+
+    const freeToPlayAccounts = await FreeToPlayModal.find({})
+
+    return res.status(200).json(freeToPlayAccounts)
 
 })
 
@@ -63,26 +81,39 @@ const freeToPlay = asyncHandler(async (req, res) => {
 
 })
 
+const getFirstDepositeEntry = asyncHandler(async (req, res) => {
+
+    console.log("getFirstDeposite", req.body)
+    const firstDepositeEntries = await FirstDepositeEntryModal.find({})
+
+    return res.status(200).json(firstDepositeEntries)
+
+})
 
 const firstDepositeEntry = asyncHandler(async (req, res) => {
 
+
+    console.log("firstDeposteEntry", req.body)
+
     const {
-        timeStamp,
-        date,
+        entryBy,
         agentName,
-        systemNumber,
-        agentFbAccount,
-        recieverId,
+        date,
+        customerName,
+        gameName,
+        amountOfCoin,
+        accountName,
         remark
     } = req.body
 
     const firstDepositeNewEntry = await FirstDepositeEntryModal.create({
-        timeStamp,
-        date,
+        entryBy,
         agentName,
-        systemNumber,
-        agentFbAccount,
-        recieverId,
+        date,
+        customerName,
+        gameName,
+        amountOfCoin,
+        accountName,
         remark
     });
 
@@ -93,4 +124,4 @@ const firstDepositeEntry = asyncHandler(async (req, res) => {
 })
 
 
-module.exports = { freshMessages, freeToPlay, firstDepositeEntry }
+module.exports = { getFirstDepositeEntry, getFreeToPlay, getFreshMessages, freshMessages, freeToPlay, firstDepositeEntry }
