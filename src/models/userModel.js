@@ -16,7 +16,7 @@ const userSchema = new mongoose.Schema({
     },
     isActive: {
         type: Boolean,
-        default: false,
+        default: true,
     },
     phoneNumber: {
         type: String,
@@ -37,7 +37,7 @@ const userSchema = new mongoose.Schema({
     onModel: {
         type: String,
         required: true,
-        enum: ["tl", "agent", "manager"]  // List of possible models
+        enum: ["tlSchema", "agentSchema", "managerSchema"]  // List of possible models
     }
 },
     {

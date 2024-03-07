@@ -1,3 +1,4 @@
+const ManagerModal = require("../../../models/managerModal");
 const User = require("../../../models/userModel");
 const { asyncHandler } = require("../../../utils/helpers/errorHelper");
 
@@ -22,7 +23,7 @@ const employees = asyncHandler(async (req, res) => {
 )
 
 const userRegistration = asyncHandler(async (req, res) => {
-  console.log("regggggg")
+  console.log("regggggg", req.body)
 
   const {
     userName,
@@ -35,12 +36,15 @@ const userRegistration = asyncHandler(async (req, res) => {
   } = req.body
 
 
-
   if (await User.findOne({ email })) {
     console.log("kk")
     return res.status(201).json({ error: "This email already registered" });
 
   }
+
+  let objId =""
+  if(designation === "managerSchema")
+     objId = await ManagerModal.create({shift:req.body.shift})
 
   console.log("1")
   const user = await User.create({
@@ -50,11 +54,12 @@ const userRegistration = asyncHandler(async (req, res) => {
     isActive,
     phoneNumber,
     address,
+    userNextDetails:objId ||  null,
     designation,
     onModel: designation
   });
 
-  return res.status(200).json(user);
+  return res.status(200).json({});
 
 })
 

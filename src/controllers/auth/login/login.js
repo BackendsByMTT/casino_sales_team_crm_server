@@ -19,7 +19,7 @@ const loginUser = asyncHandler(async (req, res) => {
 
   const token = jwt.sign({ email, designation: user.designation }, JWT_SECRET);
 
-  return res.status(200).json({ email, token });
+  return res.status(200).json({ email, token, designation:user.designation });
 
 })
 
