@@ -22,6 +22,7 @@ app.use(express.urlencoded({extended:true}))
 app.use("/",router)
 
 const httpServer = createServer(app);
+
 const io = new Server(httpServer,{
   cors:{
     origin:'*'

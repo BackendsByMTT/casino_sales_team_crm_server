@@ -41,7 +41,8 @@ const balanceSheet = asyncHandler(async (req, res) => {
     salary,
     incentive,
     totalSalary,
-    review
+    review,
+    date
 
   } = req.body
 
@@ -55,7 +56,8 @@ const balanceSheet = asyncHandler(async (req, res) => {
     salary,
     incentive,
     totalSalary,
-    review
+    review,
+    date
 
   });
 
@@ -66,6 +68,7 @@ const balanceSheet = asyncHandler(async (req, res) => {
 const coinSheet = asyncHandler(async (req, res) => {
 
   const {
+    date,
     entryBy,
     initialCoin,
     spend,
@@ -77,6 +80,7 @@ const coinSheet = asyncHandler(async (req, res) => {
 
   console.log("1")
   const newCoinEntry = await CoinSheetModal.create({
+    date,
     entryBy,
     initialCoin,
     spend,
@@ -96,6 +100,7 @@ const accountRecord = asyncHandler(async (req, res) => {
     userName,
     password,
     status,
+    date,
     fbAccountLink,
     agentNameOfFbAccount,
 
@@ -103,6 +108,7 @@ const accountRecord = asyncHandler(async (req, res) => {
 
   console.log("entryAccount TRecords",req.body)
   const newAccountRecord = await AccountRecordModal.create({
+    date,
     entryBy,
     userName,
     password,

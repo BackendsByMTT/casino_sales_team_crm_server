@@ -14,6 +14,9 @@ const AccountRecordSchema = new mongoose.Schema({
         unique: true,
         required: true,
     },
+    date:{
+        type:String
+    },
     status: {
         type: String,
         required: true,

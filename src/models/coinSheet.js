@@ -17,6 +17,9 @@ const CoinSheetSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
+    date:{
+        type:String
+    },
     incentive: {
         type: String,
         required: true,
